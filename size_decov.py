@@ -209,7 +209,7 @@ if __name__ == '__main__':
 	print('#Location\tScale\tAmplitude')
 	for loc, scl, amp in (result_pars):
 		print(f'{loc:.1f}\t{scl:.2f}\t{amp:.2f}')
-	plot_peaks(x, y, result_pars, 'size_decov.pdf')
+	plot_peaks(x, y, result_pars, 'size_decov.png')
 
 
 	# size deconvolution with constrains
@@ -226,4 +226,4 @@ if __name__ == '__main__':
 	print('#Location\tScale\tAmplitude')
 	for loc, scl, amp in (result_pars):
 		print(f'{loc:.1f}\t{scl:.2f}\t{amp:.2f}')
-	plot_peaks(x, y, result_pars, 'size_decov_constrains.pdf')
+	plot_peaks(x, y, result_pars, 'size_decov_constrains.png')
