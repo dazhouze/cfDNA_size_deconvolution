@@ -1,12 +1,13 @@
 # cfDNA Size Deconvolution Analysis
 
 This project provides tools for deconvoluting cell-free DNA (cfDNA) fragment size profiles using the Cauchy–Lorentz distribution.
-The deconvolution analysis based on non-linear curve fitting algorithm implimentated by LMFIT module.
+The deconvolution analysis based on non-linear curve fitting algorithm implimentated by LMFIT module <https://lmfit.github.io/lmfit-py/>.
 
 Each distribution in the size profile is modeled as a component, with three parameters estimated per component: center, scale, and amplitude.
 
 
 * Installation
+  
 Install required Python modules with:
 ```
     pip install -r requirements.txt
