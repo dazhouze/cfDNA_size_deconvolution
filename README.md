@@ -4,7 +4,7 @@ This project provides tools for deconvoluting cell-free DNA (cfDNA) fragment siz
 The deconvolution analysis based on non-linear curve fitting algorithm implimentated by LMFIT module <https://lmfit.github.io/lmfit-py/>.
 
 Each distribution in the size profile is modeled as a component, with three parameters estimated per component: center, scale, and amplitude.
-
+![Illustration](./workflow.png)
 
 * Installation
   
