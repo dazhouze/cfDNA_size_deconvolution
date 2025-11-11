@@ -58,18 +58,16 @@ def peak_decov_constrain(fig_x, fig_y, peaks_cen, max_scale=None):
 		mod.set_param_hint('center', value=peak)
 		mod.set_param_hint('amplitude', min=0)
 
-		if peak == 70:
+		if 60 in peaks_cen and 70 in peaks_cen and peak == 70:
 			mod.set_param_hint('sigma', expr='peak60_sigma')
-		elif peak == 90:
+		elif 80 in peaks_cen and 90 in peaks_cen and peak == 90:
 			mod.set_param_hint('sigma', expr='peak80_sigma')
-		elif peak == 110:
-			mod.set_param_hint('sigma', expr='peak100_sigma')
-		elif peak == 130:
-			mod.set_param_hint('sigma', expr='peak120_sigma')
-		elif peak == 150:
-			mod.set_param_hint('sigma', expr='peak140_sigma')
-		elif peak >= 190:
-			mod.set_param_hint('sigma', expr='peak180_sigma')
+		elif 101 in peaks_cen and 111 in peaks_cen and peak == 111:
+			mod.set_param_hint('sigma', expr='peak101_sigma')
+		elif 121 in peaks_cen and 131 in peaks_cen and peak == 131:
+			mod.set_param_hint('sigma', expr='peak121_sigma')
+		elif 141 in peaks_cen and 151 in peaks_cen and peak == 151:
+			mod.set_param_hint('sigma', expr='peak141_sigma')
 		else:
 			mod.set_param_hint('sigma', max=max_scale)
 
@@ -130,19 +128,19 @@ def peak_decov_l2_regularization(fig_x, fig_y, peaks_cen, min_scale=2, max_scale
 		peak = peaks_cen[idx]
 
 		pfit.add(name=f'peak{peak}_amplitude', min=0.01)
-		pfit.add(name=f'peak{peak}_center', value=peaks_cen[idx], min=peaks_cen[idx]-2, max=peaks_cen[idx]+2)
+		pfit.add(name=f'peak{peak}_center', value=peaks_cen[idx], min=peaks_cen[idx]-3, max=peaks_cen[idx]+3)
 		#pfit.add(name=f'peak{peak}_center', value=peaks_cen[idx])
 
 		if 60 in peaks_cen and 70 in peaks_cen and peak == 70:
 			mod.set_param_hint('sigma', expr='peak60_sigma')
 		elif 90 in peaks_cen and 80 in peaks_cen and peak == 90:
 			mod.set_param_hint('sigma', expr='peak80_sigma')
-		elif 110 in peaks_cen and 100 in peaks_cen and peak == 110:
-			mod.set_param_hint('sigma', expr='peak100_sigma')
-		elif 133 in peaks_cen and 122 in peaks_cen and peak == 133:
-			pfit.add(name='peak{}_sigma'.format(peak), expr='peak122_sigma')
-		elif peak == 152:
-			pfit.add(name='peak{}_sigma'.format(peak), expr='peak143_sigma')
+		elif 111 in peaks_cen and 101 in peaks_cen and peak == 111:
+			mod.set_param_hint('sigma', expr='peak101_sigma')
+		elif 131 in peaks_cen and 121 in peaks_cen and peak == 131:
+			pfit.add(name='peak{}_sigma'.format(peak), expr='peak121_sigma')
+		elif 151 in peaks_cen and 141 in peaks_cen and peak == 151:
+			pfit.add(name='peak{}_sigma'.format(peak), expr='peak141_sigma')
 		elif peak >= 177:
 			pfit.add(name='peak{}_sigma'.format(peak), expr='peak167_sigma')
 		else:
@@ -267,7 +265,7 @@ if __name__ == '__main__':
 	result_pars = peak_decov(
 		x,
 		y,
-		[60,70,80,90,100,110,120,130,140,150,160,170,180,190,200],
+		[60,70,80,90,101,111,121,131,141,151,159,167,177,188,199],
 		max_scale=8,
 		)
 	print('# Finished')
@@ -276,7 +274,7 @@ if __name__ == '__main__':
 	print('#Location\tScale\tAmplitude')
 	for loc, scl, amp in (result_pars):
 		print(f'{loc:.1f}\t{scl:.2f}\t{amp:.2f}')
-	plot_peaks(x, y, result_pars, 'size_decov.png')
+	plot_peaks(x, y, result_pars, 'size_decov_ordinary.png')
 
 
 	# size deconvolution with constrains
@@ -284,7 +282,7 @@ if __name__ == '__main__':
 	result_pars = peak_decov_constrain(
 		x,
 		y,
-		[60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210],
+		[60,70,80,90,101,111,121,131,141,151,159,167,177,188,199,210],
 		max_scale=8,
 		)
 	print('# Finished')
@@ -309,7 +307,7 @@ if __name__ == '__main__':
 	result_pars = peak_decov_l2_regularization(
 		x,
 		y,
-		peaks_cen = [122,133,143,152,159,167,177,188,199,210],
+		peaks_cen = [121,131,141,151,159,167,177,188,199],
 		)
 	print('# Finished')
 
